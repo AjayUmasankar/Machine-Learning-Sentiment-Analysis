@@ -8,13 +8,9 @@ import numpy as np
 import time
 import sys
 from sklearn.feature_extraction.text import CountVectorizer
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.stem import PorterStemmer 
-from nltk.tokenize import word_tokenize 
 from nltk.corpus import stopwords
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
-from collections import defaultdict
-import plotly.graph_objects as go
 from nltk.stem.snowball import EnglishStemmer
 
 divider_outer = 1500
