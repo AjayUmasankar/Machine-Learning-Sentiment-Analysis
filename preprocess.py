@@ -130,7 +130,7 @@ class preprocessor (object):
     def __init__(self, divider, which, model):
         # divider = number of elements in training set
         divider=divider_outer
-        print("divider is: ", divider)
+#         print("divider is: ", divider)
         if(which == "topic"):
             self.y = np.array(topic_array)
         else:
