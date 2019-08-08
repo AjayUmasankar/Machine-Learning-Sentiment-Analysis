@@ -118,7 +118,7 @@ for sentence in sentence_array[divider_outer:]:
         vader_results.append("negative")
     else:
         vader_results.append("neutral")
-print(vader_results)
+#print(vader_results)
 vader_array = np.array(vader_results)
 
 # CountVectorizer:
@@ -156,17 +156,16 @@ class preprocessor (object):
 #                     new = new + " " + newword
 #             sentence_array[i] = new.lstrip()
 #             print(new.lstrip())
-        # Stemming 
-        ps = EnglishStemmer() 
-        for i, sentence in enumerate(sentence_array):
-#             print(sentence)
-            new = ""
-            for word in sentence.split(" "):
-                stemmed = ps.stem(word)
-                newword = word[:len(stemmed)]
-                new = new + " " + newword
-            sentence_array[i] = new.lstrip()
-#             print(new.lstrip())
+#         # Stemming 
+#         ps = EnglishStemmer() 
+#         for i, sentence in enumerate(sentence_array):
+# #             print(sentence)
+#             new = ""
+#             for word in sentence.split(" "):
+#                 stemmed = ps.stem(word)
+#                 newword = word[:len(stemmed)]
+#                 new = new + " " + newword
+#             sentence_array[i] = new.lstrip()
            
         # Creating bag of words  
         # Creating X_ and Y_ train and test from bag of words
@@ -180,25 +179,26 @@ class preprocessor (object):
         self.y_train = self.y[:divider]
         self.X_test = self.X[divider:]
         self.y_test = self.y[divider:]
+        print("Test set size: ", len(self.X_test))
         self.sentence_array = sentence_array
         self.instance_array = instance_array
         print(self.count.get_feature_names())
         
-#         print("######################## MAJORITY CLASS ##########################")
-#         if(which == "sentiment"):
-#             majority_array = np.array(major_sentiment[divider:])
-#         else:
-#             majority_array = np.array(major_topic[divider:])
-#         print(classification_report(self.y_test, majority_array))
-#         print("Accuracy:  ", accuracy_score(self.y_test, majority_array))
-#         print("Precision (array): ", precision_score(self.y_test, majority_array, average=None))
-#         print("Precision (macro): ", precision_score(self.y_test, majority_array, average='macro'))
-#         print("Recall (macro):    ", recall_score(self.y_test, majority_array, average='macro'))
-#  
-#         print("########################## VADER ##############################")
-#         print(classification_report(self.y_test, vader_array))
-#         print("Accuracy:  ", accuracy_score(self.y_test, vader_array))
-#         print("Precision (array): ", precision_score(self.y_test, vader_array, average=None))
-#         print("Precision (macro): ", precision_score(self.y_test, vader_array, average='macro'))
-#         print("Recall (macro):    ", recall_score(self.y_test, vader_array, average='macro'))
+        print("######################## MAJORITY CLASS ##########################")
+        if(which == "sentiment"):
+            majority_array = np.array(major_sentiment[divider:])
+        else:
+            majority_array = np.array(major_topic[divider:])
+        print(classification_report(self.y_test, majority_array))
+        print("Accuracy:  ", accuracy_score(self.y_test, majority_array))
+        print("Precision (array): ", precision_score(self.y_test, majority_array, average=None))
+        print("Precision (macro): ", precision_score(self.y_test, majority_array, average='macro'))
+        print("Recall (macro):    ", recall_score(self.y_test, majority_array, average='macro'))
+  
+        print("########################## VADER ##############################")
+        print(classification_report(self.y_test, vader_array))
+        print("Accuracy:  ", accuracy_score(self.y_test, vader_array))
+        print("Precision (array): ", precision_score(self.y_test, vader_array, average=None))
+        print("Precision (macro): ", precision_score(self.y_test, vader_array, average='macro'))
+        print("Recall (macro):    ", recall_score(self.y_test, vader_array, average='macro'))
         print("###################### Preprocessing end #########################")

@@ -23,7 +23,6 @@ start = time.time()
 model = clf.fit(X_train, y_train)
 stop = time.time()
 
-
 predicted_y = model.predict(X_test)
 
 # expected results vs predicted results

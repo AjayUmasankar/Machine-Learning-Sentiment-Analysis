@@ -29,6 +29,7 @@ for line in f.readlines():
     topic_array.append(words[2])
     sentiment_array.append(words[3])
     numlines = numlines + 1
+# print(sentence_array)
 # print("Sentence Array Size: ", len(sentence_array))
 
 divider_outer=numlines
