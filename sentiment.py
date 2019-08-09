@@ -13,7 +13,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 pp = preprocessor("sentiment", "mysentiment")
 
-clf = MultinomialNB()
+clf = MultinomialNB(alpha=1.1)
 model = clf.fit(pp.X_train, pp.y_train)
 
 predicted_y = model.predict(pp.X_test)

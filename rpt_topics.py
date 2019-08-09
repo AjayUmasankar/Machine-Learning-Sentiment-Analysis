@@ -18,7 +18,7 @@ X_test = pp.X_test
 y_train = pp.y_train
 y_test = pp.y_test
 
-clf = MultinomialNB(alpha=.78)
+clf = MultinomialNB(alpha=.77)
 start = time.time()
 model = clf.fit(X_train, y_train)
 stop = time.time()

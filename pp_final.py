@@ -71,9 +71,27 @@ class preprocessor (object):
         if(model == "dt"):
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False, max_features=200)
         elif(model == "mysentiment"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False)
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900)
+            ps = EnglishStemmer() 
+            for i, sentence in enumerate(sentence_array):
+                new = ""
+                for word in sentence.split(" "):
+                    stemmed = ps.stem(word)
+                    newword = word[:len(stemmed)]
+                    new = new + " " + newword
+                sentence_array[i] = new.lstrip()
+#                 print(sentence_array[i])
         elif(model == "mytopic"):
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False)
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=1000, stop_words='english')
+            ps = EnglishStemmer() 
+            for i, sentence in enumerate(sentence_array):
+                new = ""
+                for word in sentence.split(" "):
+                    stemmed = ps.stem(word)
+                    newword = word[:len(stemmed)]
+                    new = new + " " + newword
+                sentence_array[i] = new.lstrip()
+#                 print(sentence_array[i])
         else:
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False) 
             
