@@ -137,14 +137,23 @@ class preprocessor (object):
             self.y = np.array(sentiment_array)
         if(model == "dt"):
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False, max_features=200)
-        elif(model == "mine"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True)
+        elif(model == "mysentiment"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
+#             stopwords=['#auspol', '#ausvot', 'and', 'be', 'in' ,'is', 'it', 'not', 'of', 'on', 'that', 'the', 'tp', 'will', 'for', 'have',' job', 'are', 'about', 'with', 'you', 'say']
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900, stop_words='english')
+            ps = EnglishStemmer() 
+            for i, sentence in enumerate(sentence_array):
+                new = ""
+                for word in sentence.split(" "):
+                    stemmed = ps.stem(word)
+                    newword = word[:len(stemmed)]
+                    new = new + " " + newword
+                sentence_array[i] = new.lstrip()
         else:
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False) 
             
 
 #         # Stemming + Stopword removal
-#         ps = PorterStemmer() 
+#         ps = EnglishStemmer() 
 #         for i, sentence in enumerate(sentence_array):
 #             print(sentence)
 #             new = ""
@@ -156,16 +165,8 @@ class preprocessor (object):
 #                     new = new + " " + newword
 #             sentence_array[i] = new.lstrip()
 #             print(new.lstrip())
-#         # Stemming 
-#         ps = EnglishStemmer() 
-#         for i, sentence in enumerate(sentence_array):
-# #             print(sentence)
-#             new = ""
-#             for word in sentence.split(" "):
-#                 stemmed = ps.stem(word)
-#                 newword = word[:len(stemmed)]
-#                 new = new + " " + newword
-#             sentence_array[i] = new.lstrip()
+
+
            
         # Creating bag of words  
         # Creating X_ and Y_ train and test from bag of words
@@ -184,21 +185,21 @@ class preprocessor (object):
         self.instance_array = instance_array
         print(self.count.get_feature_names())
         
-        print("######################## MAJORITY CLASS ##########################")
-        if(which == "sentiment"):
-            majority_array = np.array(major_sentiment[divider:])
-        else:
-            majority_array = np.array(major_topic[divider:])
-        print(classification_report(self.y_test, majority_array))
-        print("Accuracy:  ", accuracy_score(self.y_test, majority_array))
-        print("Precision (array): ", precision_score(self.y_test, majority_array, average=None))
-        print("Precision (macro): ", precision_score(self.y_test, majority_array, average='macro'))
-        print("Recall (macro):    ", recall_score(self.y_test, majority_array, average='macro'))
-  
-        print("########################## VADER ##############################")
-        print(classification_report(self.y_test, vader_array))
-        print("Accuracy:  ", accuracy_score(self.y_test, vader_array))
-        print("Precision (array): ", precision_score(self.y_test, vader_array, average=None))
-        print("Precision (macro): ", precision_score(self.y_test, vader_array, average='macro'))
-        print("Recall (macro):    ", recall_score(self.y_test, vader_array, average='macro'))
+#         print("######################## MAJORITY CLASS ##########################")
+#         if(which == "sentiment"):
+#             majority_array = np.array(major_sentiment[divider:])
+#         else:
+#             majority_array = np.array(major_topic[divider:])
+#         print(classification_report(self.y_test, majority_array))
+#         print("Accuracy:  ", accuracy_score(self.y_test, majority_array))
+#         print("Precision (array): ", precision_score(self.y_test, majority_array, average=None))
+#         print("Precision (macro): ", precision_score(self.y_test, majority_array, average='macro'))
+#         print("Recall (macro):    ", recall_score(self.y_test, majority_array, average='macro'))
+#     
+#         print("########################## VADER ##############################")
+#         print(classification_report(self.y_test, vader_array))
+#         print("Accuracy:  ", accuracy_score(self.y_test, vader_array))
+#         print("Precision (array): ", precision_score(self.y_test, vader_array, average=None))
+#         print("Precision (macro): ", precision_score(self.y_test, vader_array, average='macro'))
+#         print("Recall (macro):    ", recall_score(self.y_test, vader_array, average='macro'))
         print("###################### Preprocessing end #########################")

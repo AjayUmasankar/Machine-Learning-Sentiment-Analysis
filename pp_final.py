@@ -19,7 +19,6 @@ sentence_array = []
 topic_array = []
 sentiment_array = []
 f = open(sys.argv[1], "r", encoding='UTF-8')
-# print(sys.argv[1])
 numlines = 0
 for line in f.readlines():
     line.rstrip()
@@ -72,21 +71,9 @@ class preprocessor (object):
         if(model == "dt"):
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False, max_features=200)
         elif(model == "mysentiment"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True)
-                # Stemming 
-                #         ps = EnglishStemmer() 
-                #         for i, sentence in enumerate(sentence_array):
-                # #             print(sentence)
-                #             new = ""
-                #             for word in sentence.split(" "):
-                #                 stemmed = ps.stem(word)
-                #                 newword = word[:len(stemmed)]
-                #                 new = new + " " + newword
-                #             sentence_array[i] = new.lstrip()
-                # #             print(new.lstrip())
-    
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False)
         elif(model == "mytopic"):
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})')
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False)
         else:
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False) 
             
