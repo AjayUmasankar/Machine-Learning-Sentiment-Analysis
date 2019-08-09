@@ -9,10 +9,8 @@
 # 
 from pp_final import preprocessor
 from sklearn.naive_bayes import MultinomialNB
-#GOAL=0.74
 
 pp = preprocessor("topic", "mnb")
-
 clf = MultinomialNB()
 model = clf.fit(pp.X_train, pp.y_train)
 

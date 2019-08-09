@@ -11,7 +11,6 @@ from pp_final import preprocessor
 from sklearn.naive_bayes import BernoulliNB
 
 pp = preprocessor("topic", "bnb")
-
 clf = BernoulliNB()
 model = clf.fit(pp.X_train, pp.y_train)
 

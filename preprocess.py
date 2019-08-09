@@ -140,6 +140,17 @@ class preprocessor (object):
         elif(model == "mysentiment"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
 #             stopwords=['#auspol', '#ausvot', 'and', 'be', 'in' ,'is', 'it', 'not', 'of', 'on', 'that', 'the', 'tp', 'will', 'for', 'have',' job', 'are', 'about', 'with', 'you', 'say']
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900, stop_words='english')
+            ps = PorterStemmer() 
+            for i, sentence in enumerate(sentence_array):
+                new = ""
+                for word in sentence.split(" "):
+                    stemmed = ps.stem(word)
+                    newword = word[:len(stemmed)]
+                    new = new + " " + newword
+                sentence_array[i] = new.lstrip()
+        elif(model == "mytopic"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
+#             stopwords=['#auspol', '#ausvot', 'and', 'be', 'in' ,'is', 'it', 'not', 'of', 'on', 'that', 'the', 'tp', 'will', 'for', 'have',' job', 'are', 'about', 'with', 'you', 'say']
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})')
             ps = EnglishStemmer() 
             for i, sentence in enumerate(sentence_array):
                 new = ""

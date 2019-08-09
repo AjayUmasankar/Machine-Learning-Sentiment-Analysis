@@ -9,10 +9,8 @@
 # 
 from pp_final import preprocessor
 from sklearn.naive_bayes import BernoulliNB
-#GOAL=0.74
 
 pp = preprocessor("sentiment", "bnb")
-
 clf = BernoulliNB()
 model = clf.fit(pp.X_train, pp.y_train)
 

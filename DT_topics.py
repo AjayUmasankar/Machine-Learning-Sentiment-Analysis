@@ -10,10 +10,7 @@
 from pp_final import preprocessor
 from sklearn import tree
 
-#GOAL=0.74
-
 pp = preprocessor("topic", "dt")
-
 clf = tree.DecisionTreeClassifier(criterion='entropy',random_state=0, min_samples_leaf=20)
 model = clf.fit(pp.X_train, pp.y_train)
 
