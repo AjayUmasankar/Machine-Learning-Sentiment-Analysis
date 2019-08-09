@@ -12,13 +12,13 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 import time
 
-pp = preprocessor(1500, "sentiment", "mysentiment")
+pp = preprocessor(1600, "sentiment", "mysentiment")
 X_train = pp.X_train
 X_test = pp.X_test
 y_train = pp.y_train
 y_test = pp.y_test
 
-clf = MultinomialNB()
+clf = MultinomialNB(alpha=.95)
 start = time.time()
 model = clf.fit(X_train, y_train)
 stop = time.time()

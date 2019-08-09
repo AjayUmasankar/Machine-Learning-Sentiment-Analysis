@@ -129,7 +129,7 @@ vader_array = np.array(vader_results)
 class preprocessor (object):
     def __init__(self, divider, which, model):
         # divider = number of elements in training set
-        divider=divider_outer
+        #divider=divider_outer
 #         print("divider is: ", divider)
         if(which == "topic"):
             self.y = np.array(topic_array)
@@ -139,8 +139,8 @@ class preprocessor (object):
             self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=False, max_features=200)
         elif(model == "mysentiment"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
 #             stopwords=['#auspol', '#ausvot', 'and', 'be', 'in' ,'is', 'it', 'not', 'of', 'on', 'that', 'the', 'tp', 'will', 'for', 'have',' job', 'are', 'about', 'with', 'you', 'say']
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900, stop_words='english')
-            ps = PorterStemmer() 
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900)
+            ps = EnglishStemmer() 
             for i, sentence in enumerate(sentence_array):
                 new = ""
                 for word in sentence.split(" "):
@@ -150,7 +150,7 @@ class preprocessor (object):
                 sentence_array[i] = new.lstrip()
         elif(model == "mytopic"):   # can use token_pattern='([@#$%_A-Za-z0-9]{2,})' also 
 #             stopwords=['#auspol', '#ausvot', 'and', 'be', 'in' ,'is', 'it', 'not', 'of', 'on', 'that', 'the', 'tp', 'will', 'for', 'have',' job', 'are', 'about', 'with', 'you', 'say']
-            self.count = CountVectorizer(token_pattern='([^\s]{2,})')
+            self.count = CountVectorizer(token_pattern='([^\s]{2,})', lowercase=True, max_features=900, stop_words='english')
             ps = EnglishStemmer() 
             for i, sentence in enumerate(sentence_array):
                 new = ""
