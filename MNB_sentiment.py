@@ -10,7 +10,7 @@
 from pp_final import preprocessor
 from sklearn.naive_bayes import MultinomialNB
 #GOAL=0.74
-
+#
 pp = preprocessor("sentiment", "mnb")
 
 clf = MultinomialNB()
@@ -22,3 +22,4 @@ for y in predicted_y:
     print(pp.instance_array[i], y)
     i = i + 1
 
+#

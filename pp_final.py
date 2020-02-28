@@ -12,7 +12,7 @@ from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 from nltk.stem.snowball import EnglishStemmer
-
+#
 divider_outer = 1500
 instance_array = []
 sentence_array = []

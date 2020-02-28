@@ -9,7 +9,7 @@
 # 
 from pp_final import preprocessor
 from sklearn.naive_bayes import MultinomialNB
-
+#
 pp = preprocessor("topic", "mnb")
 clf = MultinomialNB()
 model = clf.fit(pp.X_train, pp.y_train)
