@@ -26,3 +26,5 @@ if [ "$total_lines_different" -eq 0 ]; then
 else
     echo "$total_lines_different/$total_lines lines are different"
 fi
+
+#
